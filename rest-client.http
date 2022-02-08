@@ -1,0 +1,27 @@
+// 事前に「REST Client」のvscode拡張機能入れとく
+
+@_apiurl = http://localhost:5000/api
+
+//*************** Hello API ***************//
+
+###***** 取得 *****###
+GET {{_apiurl}}/hello HTTP/1.1
+
+###***** 作成 *****###
+POST {{_apiurl}}/hello HTTP/1.1
+content-type: application/json
+
+# {
+#     "message": "POST Hello"
+# }
+
+###***** 更新 *****###
+PUT {{_apiurl}}/hello/1 HTTP/1.1
+content-type: application/json
+
+# {
+#     "message": "PUT Hello"
+# }
+
+###***** 削除 *****###
+DELETE {{_apiurl}}/hello/1 HTTP/1.1
