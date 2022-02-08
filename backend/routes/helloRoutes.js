@@ -1,20 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const {getHello, setHello, updateHello, deleteHello} = require('../controllers/helloController')
 
-router.get('/', (req, res) => {
-    res.status(200).json({ message: 'GET Hello' })
-})
+router.get('/', getHello)
 
-router.post('/', (req, res) => {
-    res.status(200).json({ message: 'POST Hello' })
-})
+router.post('/',setHello)
 
-router.put('/:id', (req, res) => {
-    res.status(200).json({ message: `PUT Hello ${req.params.id}` })
-})
+router.put('/:id', updateHello)
 
-router.delete('/:id', (req, res) => {
-    res.status(200).json({ message: `DELETE Hello ${req.params.id}` })
-})
+router.delete('/:id', deleteHello)
 
 module.exports = router
