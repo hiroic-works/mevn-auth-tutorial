@@ -12,16 +12,16 @@ POST {{_apiurl}}/hello HTTP/1.1
 content-type: application/json
 
 {
-    "text": "first Hello"
+    "text": "second Hello"
 }
 
 ###***** 更新 *****###
-PUT {{_apiurl}}/hello/1 HTTP/1.1
+PUT {{_apiurl}}/hello/62021713515318337ee08cc6 HTTP/1.1
 content-type: application/json
 
-# {
-#     "message": "PUT Hello"
-# }
+{
+    "text": "updated Hello"
+}
 
 ###***** 削除 *****###
-DELETE {{_apiurl}}/hello/1 HTTP/1.1
+DELETE {{_apiurl}}/hello/62021713515318337ee08cc6 HTTP/1.1
