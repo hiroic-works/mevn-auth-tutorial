@@ -11,9 +11,9 @@ GET {{_apiurl}}/hello HTTP/1.1
 POST {{_apiurl}}/hello HTTP/1.1
 content-type: application/json
 
-# {
-#     "message": "POST Hello"
-# }
+{
+    "text": "first Hello"
+}
 
 ###***** 更新 *****###
 PUT {{_apiurl}}/hello/1 HTTP/1.1

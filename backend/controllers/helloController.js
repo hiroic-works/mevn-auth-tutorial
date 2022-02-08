@@ -13,6 +13,10 @@ const getHello = (req, res) => {
  * @access Private
  */
  const setHello = (req, res) => {
+     if(!req.body.text) {
+        res.status(400)
+        throw new Error('Bad Request: リクエストに「text」は必須だよ')
+     }
     res.status(200).json({ message: 'POST Hello' })
 }
 
