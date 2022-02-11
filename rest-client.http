@@ -6,25 +6,29 @@
 
 ###***** 取得 *****###
 GET {{_apiurl}}/hello HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDVlMTRiZDQ3MWU3MmEzN2RjZTFiOSIsImlhdCI6MTY0NDU1NzA0MywiZXhwIjoxNjQ3MTQ5MDQzfQ.3zpRWFOkY8jkAY2KDV_riQzL1rfYY6FR2T7Jk2qu7BA
 
 ###***** 作成 *****###
 POST {{_apiurl}}/hello HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDVlMTRiZDQ3MWU3MmEzN2RjZTFiOSIsImlhdCI6MTY0NDU1NzA0MywiZXhwIjoxNjQ3MTQ5MDQzfQ.3zpRWFOkY8jkAY2KDV_riQzL1rfYY6FR2T7Jk2qu7BA
 
 {
-    "text": "second Hello"
+    "text": "private Hello2"
 }
 
 ###***** 更新 *****###
-PUT {{_apiurl}}/hello/62021713515318337ee08cc6 HTTP/1.1
+PUT {{_apiurl}}/hello/6205e940b5ccbf4232af32ff HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDVlMTRiZDQ3MWU3MmEzN2RjZTFiOSIsImlhdCI6MTY0NDU1NzA0MywiZXhwIjoxNjQ3MTQ5MDQzfQ.3zpRWFOkY8jkAY2KDV_riQzL1rfYY6FR2T7Jk2qu7BA
 
 {
-    "text": "updated Hello"
+    "text": "updated private Hello"
 }
 
 ###***** 削除 *****###
-DELETE {{_apiurl}}/hello/62021713515318337ee08cc6 HTTP/1.1
+DELETE {{_apiurl}}/hello/6205e982e570c3c2ae36d498 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDVlMTRiZDQ3MWU3MmEzN2RjZTFiOSIsImlhdCI6MTY0NDU1NzA0MywiZXhwIjoxNjQ3MTQ5MDQzfQ.3zpRWFOkY8jkAY2KDV_riQzL1rfYY6FR2T7Jk2qu7BA
 
 
 //*************** Users API ***************//
@@ -34,8 +38,8 @@ POST {{_apiurl}}/users HTTP/1.1
 content-type: application/json
 
 {
-    "name": "test02",
-    "email": "b@b.com",
+    "name": "test03",
+    "email": "c@c.com",
     "password": "123456"
 }
 
@@ -44,10 +48,11 @@ POST {{_apiurl}}/users/login HTTP/1.1
 content-type: application/json
 
 {
+    // "email": "c@c.com",
     "email": "b@b.com",
     "password": "123456"
 }
 
 ###***** マイユーザー取得 *****###
 GET {{_apiurl}}/users/me HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDVlMTRiZDQ3MWU3MmEzN2RjZTFiOSIsImlhdCI6MTY0NDU1MzY4NSwiZXhwIjoxNjQ3MTQ1Njg1fQ.wJ6y6F3OBsjpuWQG0QIK7gpkUDuXmgueQqMOKv8TaKM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDVlMTRiZDQ3MWU3MmEzN2RjZTFiOSIsImlhdCI6MTY0NDU1NzA0MywiZXhwIjoxNjQ3MTQ5MDQzfQ.3zpRWFOkY8jkAY2KDV_riQzL1rfYY6FR2T7Jk2qu7BA

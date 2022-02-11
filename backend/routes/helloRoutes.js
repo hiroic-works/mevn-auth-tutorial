@@ -1,13 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const {getHello, setHello, updateHello, deleteHello} = require('../controllers/helloController')
+const { protect } = require('../middleware/authMiddleware')
 
-router.get('/', getHello)
+router.get('/', protect, getHello)
 
-router.post('/',setHello)
+router.post('/', protect, setHello)
 
-router.put('/:id', updateHello)
+router.put('/:id', protect, updateHello)
 
-router.delete('/:id', deleteHello)
+router.delete('/:id', protect, deleteHello)
 
 module.exports = router

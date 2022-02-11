@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const Hello = require('../models/helloModel')
+const User = require('../models/userModel')
 
 /**
  * @desc get hello
@@ -7,7 +8,7 @@ const Hello = require('../models/helloModel')
  * @access Private
  */
 const getHello = asyncHandler(async (req, res) => {
-    const hello = await Hello.find()
+    const hello = await Hello.find({user_id: req.user.id})
     res.status(200).json(hello)
 })
 
@@ -23,7 +24,8 @@ const getHello = asyncHandler(async (req, res) => {
      }
 
      const hello = await Hello.create({
-         text: req.body.text
+         text: req.body.text,
+         user_id: req.user.id
      })
 
     res.status(200).json(hello)
@@ -41,6 +43,21 @@ const getHello = asyncHandler(async (req, res) => {
         throw new Error('Bad Request: IDが見つからないよ')
     }
 
+    // 認証ユーザー取得
+    const user = await User.findById(req.user.id)
+
+    // 存在してないユーザーの場合
+    if(!user) {
+        res.status(401)
+        throw new Error('ユーザーが見つかりません')
+    }
+
+    // ログインユーザーとhelloしたデータのユーザーが一致してない場合
+    if(hello.user_id.toString() !== user.id) {
+        res.status(401)
+        throw new Error('認証されてないユーザーのデータのため操作できません')
+    }
+
     const updatedHello = await Hello.findByIdAndUpdate(req.params.id, req.body, {new: true})
 
     res.status(200).json(updatedHello)
@@ -56,6 +73,21 @@ const getHello = asyncHandler(async (req, res) => {
     if(!hello) {
         res.status(400)
         throw new Error('Bad Request: IDが見つからないよ')
+    }
+
+    // 認証ユーザー取得
+    const user = await User.findById(req.user.id)
+
+    // 存在してないユーザーの場合
+    if(!user) {
+        res.status(401)
+        throw new Error('ユーザーが見つかりません')
+    }
+
+    // ログインユーザーとhelloしたデータのユーザーが一致してない場合
+    if(hello.user_id.toString() !== user.id) {
+        res.status(401)
+        throw new Error('認証されてないユーザーのデータのため操作できません')
     }
 
     await hello.remove()
