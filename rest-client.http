@@ -33,17 +33,21 @@ DELETE {{_apiurl}}/hello/62021713515318337ee08cc6 HTTP/1.1
 POST {{_apiurl}}/users HTTP/1.1
 content-type: application/json
 
-# {
-#     "text": "second Hello"
-# }
+{
+    "name": "test02",
+    "email": "b@b.com",
+    "password": "123456"
+}
 
 ###***** ユーザーログイン *****###
 POST {{_apiurl}}/users/login HTTP/1.1
 content-type: application/json
 
-# {
-#     "text": "second Hello"
-# }
+{
+    "email": "b@b.com",
+    "password": "123456"
+}
 
 ###***** マイユーザー取得 *****###
 GET {{_apiurl}}/users/me HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDVlMTRiZDQ3MWU3MmEzN2RjZTFiOSIsImlhdCI6MTY0NDU1MzY4NSwiZXhwIjoxNjQ3MTQ1Njg1fQ.wJ6y6F3OBsjpuWQG0QIK7gpkUDuXmgueQqMOKv8TaKM
