@@ -25,3 +25,25 @@ content-type: application/json
 
 ###***** 削除 *****###
 DELETE {{_apiurl}}/hello/62021713515318337ee08cc6 HTTP/1.1
+
+
+//*************** Users API ***************//
+
+###***** ユーザー登録 *****###
+POST {{_apiurl}}/users HTTP/1.1
+content-type: application/json
+
+# {
+#     "text": "second Hello"
+# }
+
+###***** ユーザーログイン *****###
+POST {{_apiurl}}/users/login HTTP/1.1
+content-type: application/json
+
+# {
+#     "text": "second Hello"
+# }
+
+###***** マイユーザー取得 *****###
+GET {{_apiurl}}/users/me HTTP/1.1
