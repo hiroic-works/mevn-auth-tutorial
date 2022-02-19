@@ -4,6 +4,8 @@ import MyPageView from '../views/MyPageView.vue'
 import SignInView from '../views/SignInView.vue'
 import SignUpView from '../views/SignUpView.vue'
 
+import { useAuthStore } from '@/stores/useAuth.js';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -15,7 +17,10 @@ const router = createRouter({
     {
       path: '/mypage',
       name: 'mypage',
-      component: MyPageView
+      component: MyPageView,
+      meta: {
+        requiresAuth: true, // 認証必須ページ
+      },
     },
     {
       path: '/signin',
@@ -29,5 +34,27 @@ const router = createRouter({
     },
   ]
 })
+
+router.beforeEach(async (to, from, next) => {
+  // storeの読み込み
+  const auth = useAuthStore();
+
+  // ユーザー情報取得済み（サインイン済み）ユーザーがサインインページに入ったらTOPにリダイレクト
+  if (to.path === '/signin' && auth.isLoggedIn) {
+    next('/');
+    return;
+  }
+  // 認証ページにサインインしてないユーザーが入ったらサインインページにリダイレクト
+  if (
+    to.matched.some((record) => record.meta.requiresAuth) &&
+    !auth.isLoggedIn
+  ) {
+    next('/signin');
+    return;
+  }
+
+  next();
+});
+
 
 export default router
